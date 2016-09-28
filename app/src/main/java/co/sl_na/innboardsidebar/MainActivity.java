@@ -1,8 +1,9 @@
 package co.sl_na.innboardsidebar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -11,7 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import co.sl_na.innboardsidebar.fragments.ConfiguracionFragment;
+import co.sl_na.innboardsidebar.fragments.ContactosFragment;
+import co.sl_na.innboardsidebar.fragments.InicioFragment;
+import co.sl_na.innboardsidebar.fragments.PerfilFragment;
+import co.sl_na.innboardsidebar.fragments.ProyectosFragment;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,44 +72,76 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        textView = (TextView) findViewById(R.id.textView);
                         switch (menuItem.getItemId()) {
-                            case R.id.item_navigation_drawer_inbox:
+                            case R.id.item_navigation_drawer_inicio:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
+                                setFragment(0);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
-                            case R.id.item_navigation_drawer_starred:
+                            case R.id.item_navigation_drawer_perfil:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
+                                setFragment(1);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
-                            case R.id.item_navigation_drawer_sent_mail:
+                            case R.id.item_navigation_drawer_proyectos:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
+                                setFragment(2);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
-                            case R.id.item_navigation_drawer_drafts:
+                            case R.id.item_navigation_drawer_configuracion:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
+                                setFragment(3);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
-                            case R.id.item_navigation_drawer_settings:
+                            case R.id.item_navigation_drawer_contactos:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
-                                Toast.makeText(MainActivity.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
-                                drawerLayout.closeDrawer(GravityCompat.START);
-                                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                                startActivity(intent);
-                                return true;
-                            case R.id.item_navigation_drawer_help_and_feedback:
-                                menuItem.setChecked(true);
-                                Toast.makeText(MainActivity.this, menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                                setFragment(4);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
                         }
                         return true;
                     }
                 });
+    }
+    public void setFragment(int position) {
+        FragmentManager fragmentManager;
+        FragmentTransaction fragmentTransaction;
+        switch (position) {
+            case 0:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                InicioFragment inicioFragment = new InicioFragment();
+                fragmentTransaction.replace(R.id.fragment, inicioFragment);
+                fragmentTransaction.commit();
+                break;
+            case 1:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                PerfilFragment perfilFragment = new PerfilFragment();
+                fragmentTransaction.replace(R.id.fragment, perfilFragment);
+                fragmentTransaction.commit();
+                break;
+            case 2:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                ProyectosFragment proyectosFragment = new ProyectosFragment();
+                fragmentTransaction.replace(R.id.fragment, proyectosFragment);
+                fragmentTransaction.commit();
+                break;
+            case 3:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                ConfiguracionFragment configuracionFragment = new ConfiguracionFragment();
+                fragmentTransaction.replace(R.id.fragment, configuracionFragment);
+                fragmentTransaction.commit();
+                break;
+            case 4:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                ContactosFragment contactosFragment = new ContactosFragment();
+                fragmentTransaction.replace(R.id.fragment, contactosFragment);
+                fragmentTransaction.commit();
+                break;
+        }
     }
 }

@@ -4,34 +4,25 @@
     <group android:checkableBehavior="single">
         <item
             android:checked="true"
-            android:id="@+id/item_navigation_drawer_inbox"
+            android:id="@+id/item_navigation_drawer_inicio"
             android:icon="@drawable/ic_inbox_black_24dp"
-            android:title="Inbox" />
+            android:title="Inicio" />
         <item
-            android:id="@+id/item_navigation_drawer_starred"
+            android:id="@+id/item_navigation_drawer_perfil"
             android:icon="@drawable/ic_action_toggle_star"
-            android:title="Starred" />
+            android:title="Perfil" />
         <item
-            android:id="@+id/item_navigation_drawer_sent_mail"
+            android:id="@+id/item_navigation_drawer_proyectos"
             android:icon="@drawable/ic_action_content_send"
-            android:title="Sent mail" />
+            android:title="Proyectos" />
         <item
-            android:id="@+id/item_navigation_drawer_drafts"
+        android:id="@+id/item_navigation_drawer_configuracion"
+        android:icon="@drawable/ic_action_content_drafts"
+        android:title="Configuración" />
+        <item
+            android:id="@+id/item_navigation_drawer_contactos"
             android:icon="@drawable/ic_action_content_drafts"
-            android:title="Drafts" />
+            android:title="Contactos" />
     </group>
-
-    <item android:title="Subheader">
-        <menu>
-            <item
-                android:id="@+id/item_navigation_drawer_settings"
-                android:icon="@drawable/ic_action_content_mail"
-                android:title="Settings" />
-            <item
-                android:id="@+id/item_navigation_drawer_help_and_feedback"
-                android:icon="@drawable/ic_action_action_delete"
-                android:title="Help and feedback" />
-        </menu>
-    </item>
 
 </menu>
